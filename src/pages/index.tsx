@@ -5,6 +5,7 @@ import Dictionary from "../components/Dictionary";
 const queryClient = new QueryClient()
 
 export default function Home() {
+  const sNumber= "g786"
   return (
     <>
       <div className="text-xl bg-gray-300 p-2 font-thin">
@@ -17,7 +18,7 @@ export default function Home() {
         </QueryClientProvider>
         </div>
         <div className="border col-span-2  border-black shadow-sm shadow-gray-800 rounded">
-          <Dictionary />
+          <Dictionary sNumber={sNumber} />
         </div>
       </div>
     </>
