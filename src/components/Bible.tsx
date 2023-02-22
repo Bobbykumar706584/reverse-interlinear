@@ -1,20 +1,26 @@
-import { useState } from 'react'
-import { useQuery } from 'react-query'
-import Books from './Books'
 
+import { useState } from 'react';
+import Books from './Books'
+import Chapters from './Chapters'
+
+// type book = {
+//     active: boolean
+//     book:{
+//         bookId: number
+//         bookName: string
+//         bookCode :string
+//     }
+// }
 
 const Bible = () => {
-    const { isLoading, data } = useQuery('repoData', () =>
-        fetch('https://stagingapi.vachanengine.org/v2/bibles/en_KJV_1_bible/books').then(res =>
-            res.json()
-        )
-    )
-
-    if (isLoading) return 'Loading...'
+   const [book, setBook] = useState<string>("")
+   const [chapter, setChapter] = useState<number>(1)
+   const [verse, setVerse] = useState<string>("")
+   console.log(book)
     return (
         <>
-            <div><Books books={data}/></div>
-            <div>Chapter</div>
+            <div><Books book={book} setBook={setBook} /></div>
+            <div><Chapters chapter={chapter} setChapter={setChapter} /></div>
             <div>Verse</div>
             <div>UI</div>
         </>
