@@ -1,12 +1,12 @@
 import { useState } from "react";
+import Select from 'react-select'
 
 export default function Books({books}){
     return (
-        <select>
-            {books.map(item => {
-                {console.log(item.book.bookName, 'hello')}
-                <option value={item.book.bookName}>{item.book.bookName}</option>
-            })}
+        <select className="p-2 m-2 hover:bg-gray-100 border border-black rounded ">
+            {books.map((item)=>(
+                <option className="" value={item.book.bookName} key={item.book.bookName}> {item.book.bookName} </option>
+            ))}
         </select>
     )
 }

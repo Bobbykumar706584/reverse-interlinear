@@ -11,10 +11,8 @@ const Bible = () => {
     )
 
     if (isLoading) return 'Loading...'
-    console.log(data)
     return (
         <>
-            <div>Header</div>
             <div><Books books={data}/></div>
             <div>Chapter</div>
             <div>Verse</div>
