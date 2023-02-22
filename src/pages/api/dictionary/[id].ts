@@ -8,20 +8,24 @@ export default async function handle(
     res: NextApiResponse,
   ) {
     const strongsNumber = req.query.id as string
-    if(strongsNumber.startsWith("H"))
+    if(strongsNumber.toUpperCase().startsWith("H"))
     {
       const record = await prisma.hebrew_Dictionary.findFirst({
         where: { strongsNumber: String(strongsNumber) }
       })
-      return res.json(record)
+      if(record) {
+        return res.json(record)
+      }     
     }
-    else if(strongsNumber.startsWith("g"))
+    else if(strongsNumber.toLowerCase().startsWith("g"))
     {
       const record = await prisma.greek_Dictionary.findFirst({
         where: { strongsNumber: String(strongsNumber) }
       })
-      return res.json(record)
+      console.log(record)
+      if(record) {
+        return res.json(record)
+      }
     }
      return res.json({message :'Invalid StrongsNumber'})
-
   }
