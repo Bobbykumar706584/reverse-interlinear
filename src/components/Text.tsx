@@ -16,7 +16,7 @@ const Text = ({ book, chapter }: { book: string; chapter: number }) => {
   );
   return (
     <div>
-      {data.contents?.map(
+      {data?.contents?.map(
         (item: { verseNumber: number; verseText: string }) => {
           return (
             <>
