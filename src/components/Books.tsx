@@ -1,35 +1,29 @@
 // import Select from 'react-select'
 import { useQuery } from 'react-query'
 
-type book = {
-    active: boolean
-    book:{
-        bookId: number
-        bookName: string
-        bookCode :string
-    }
-}
+export default function Books({ books }) {
 
-type BooksProps ={
-    book :string
-    setBook : (book:string)=>void
-}
+    const [selectValue, setSelectValue] = useState('');
 
-export default function Books({book,setBook}:BooksProps){
-    const { isLoading, data } = useQuery('books', () =>
-        fetch('https://stagingapi.vachanengine.org/v2/bibles/en_KJV_1_bible/books').then(res =>
-            res.json()
-        )
-    )
-    function handleChange(e:React.ChangeEvent<HTMLSelectElement>){
-       setBook(e.target.value)
-    }
-    if (isLoading) return<div> Loading...</div>
+    const options: any = []
+    books.map((item) => {
+        options.push({ "label": item.book.bookName, "value": item.book.bookCode })
+    })
+
+    const onChange = (selectedOption) => {
+        return selectedOption?.label
+    };
+
+    console.log(selectValue)
     return (
-        <select className="p-2 m-2 hover:bg-gray-100 border border-black rounded " onChange={handleChange}>
-            {data.map((item:book)=>(
-                <option className="" value={item.book.bookCode} key={item.book.bookName}> {item.book.bookName} </option>
-            ))}
-        </select>
+        <Select
+            defaultValue={selectValue}
+            className="w-72 m-2"
+            isClearable={true}
+            isSearchable={true}
+            name="bookName"
+            options={options}
+            onChange={onChange}
+        />
     )
 }

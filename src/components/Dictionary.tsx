@@ -13,7 +13,6 @@ const Dictionary = () => {
     }
   };
 
-  // const onArrowDownClick = () => {};
   return (
     <>
       <div className="">
