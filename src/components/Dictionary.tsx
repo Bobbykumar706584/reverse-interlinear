@@ -1,7 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-const Dictionary = () => {
+const Dictionary = ({ sNumber }: { sNumber: string }) => {
   const [arrowClick, setArrowClick] = useState<boolean>(false);
   const [arrowDown, setArrowDown] = useState<boolean>(false);
 
@@ -13,7 +13,6 @@ const Dictionary = () => {
     }
   };
 
-  // const onArrowDownClick = () => {};
   return (
     <>
       <div className="">
