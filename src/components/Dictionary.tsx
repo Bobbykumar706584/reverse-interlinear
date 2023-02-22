@@ -1,8 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-const Dictionary = ({sNumber}:{sNumber:string}) => {
-  fetch(`api/dictionary${sNumber}`).then(res => res.json())
+const Dictionary = ({ sNumber }: { sNumber: string }) => {
   const [arrowClick, setArrowClick] = useState<boolean>(false);
   const [arrowDown, setArrowDown] = useState<boolean>(false);
 
