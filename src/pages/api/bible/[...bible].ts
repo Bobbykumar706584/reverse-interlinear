@@ -11,7 +11,10 @@ export default async function handle(
 ) {
   const [bookCode, chapter, verse] = req.query.bible as string[];
   const bibleDirectory = path.join(process.cwd(), "bible");
-  const usfmValue = await fs.readFile(bibleDirectory + "/1JN-kjv.usfm", "utf8");
+  const usfmValue = await fs.readFile(
+    bibleDirectory + "/" + bookCode + "-kjv.usfm",
+    "utf8"
+  );
   const myUSFMParser = new grammar.USFMParser(usfmValue);
   var jsonOutput = myUSFMParser.toJSON();
   const chapterText = jsonOutput.chapters[parseInt(chapter) - 1];
