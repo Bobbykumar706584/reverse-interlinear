@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Greek_Dictionary {
+  id              Int @id @default(autoincrement())
+  pronunciation   String?
+  lemma	          String?
+  transliteration	String?
+  definition	    String?
+  strongsNumber	  String
+  englishWord	    String?
+}
+
+model Hebrew_Dictionary {
+  id              Int @id @default(autoincrement())
+  lemma           String
+  pronunciation   String
+  transliteration String
+  definition      String
+  derivation      String?
+  strongsNumber   String
+  englishWord     String?
+  }
