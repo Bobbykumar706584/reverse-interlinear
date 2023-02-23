@@ -1,3 +1,4 @@
+import { it } from "node:test";
 import { useQuery } from "react-query";
 
 const fetcher = async (url: string) => {
@@ -9,20 +10,26 @@ const fetcher = async (url: string) => {
   }
   return data;
 };
-
-const Text = ({ book, chapter }: { book: string; chapter: number }) => {
-  const { isLoading, data } = useQuery("repoData", () =>
-    fetch("/api/bible/mat/2").then((res) => res.json())
+type TextProps = {
+  book: string | undefined;
+  chapter: string | undefined;
+};
+const Text = ({ book, chapter }: TextProps) => {
+  const { isLoading, data } = useQuery(["repoData", book, chapter], () =>
+    fetch(`/api/bible/${book}/${chapter}`).then((res) => res.json())
   );
+
+  if (isLoading) return <div>Loading Chapter...</div>;
+  console.log(data);
   return (
-    <div>
+    <div className="m-4 text-justify">
       {data?.contents?.map(
         (item: { verseNumber: number; verseText: string }) => {
           return (
-            <>
-              <span>{item.verseNumber}</span>
+            <div className="py-1" key={item.verseNumber}>
+              <span className="font-semibold mr-1">{item.verseNumber}</span>
               <span>{item.verseText}</span>
-            </>
+            </div>
           );
         }
       )}
