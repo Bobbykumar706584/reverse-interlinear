@@ -11,17 +11,17 @@ datasource db {
 }
 
 model Greek_Dictionary {
-  id              Int @id @default(autoincrement())
+  id              Int     @id @default(autoincrement())
   pronunciation   String?
-  lemma	          String?
-  transliteration	String?
-  definition	    String?
-  strongsNumber	  String
-  englishWord	    String?
+  lemma           String?
+  transliteration String?
+  definition      String?
+  strongsNumber   String
+  englishWord     String?
 }
 
 model Hebrew_Dictionary {
-  id              Int @id @default(autoincrement())
+  id              Int     @id @default(autoincrement())
   lemma           String
   pronunciation   String
   transliteration String
@@ -29,4 +29,4 @@ model Hebrew_Dictionary {
   derivation      String?
   strongsNumber   String
   englishWord     String?
-  }
+}
