@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getLeadingCommentRanges } from 'typescript';
 import prisma from '../../../lib/prisma'
-
 // GET /api/dictionary/
 //Fetching all records from Greek and Hebrew Dictionary
 export default async function handle(

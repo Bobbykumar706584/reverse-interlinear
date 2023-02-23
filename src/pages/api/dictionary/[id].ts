@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../../lib/prisma'
-
 // GET /api/dictionary/:id
 //Fetching record with given strong number
 export default async function handle(
