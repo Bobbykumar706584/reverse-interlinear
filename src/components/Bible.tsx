@@ -7,14 +7,13 @@ type OptionType = {
   label: string;
   value: string;
 };
-const Bible = () => {
+const Bible = ({ setSNumber }: { setSNumber: (s: string) => void }) => {
   const [book, setBook] = useState<OptionType | undefined>({
     label: "Genesis",
     value: "gen",
   });
   const [chapter, setChapter] = useState<OptionType | undefined>();
   useEffect(() => {
-    console.log("test");
     setChapter({ value: "1", label: "1" });
   }, [book]);
   return (
@@ -24,7 +23,11 @@ const Bible = () => {
         <Chapters book={book} chapter={chapter} setChapter={setChapter} />
       </div>
       <div>
-        <Text book={book?.value} chapter={chapter?.value} />
+        <Text
+          book={book?.value}
+          chapter={chapter?.value}
+          setSNumber={setSNumber}
+        />
       </div>
     </>
   );
