@@ -29,7 +29,7 @@ const Chapters = ({ book, chapter, setChapter }: ChapterProps) => {
   return (
     <Select
       value={chapter}
-      className="w-72 m-2"
+      className="w-27 m-2"
       isSearchable={true}
       name="bookName"
       options={options}

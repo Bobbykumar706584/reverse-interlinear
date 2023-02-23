@@ -19,15 +19,12 @@ const Bible = () => {
   }, [book]);
   return (
     <>
-      <div>
+      <div className="flex ">
         <Books book={book} setBook={setBook} />
-      </div>
-      <div>
         <Chapters book={book} chapter={chapter} setChapter={setChapter} />
       </div>
-      <div>Verse</div>
       <div>
-        <Text book="mat" chapter={1} />
+        <Text book={book?.value} chapter={chapter?.value} />
       </div>
     </>
   );
