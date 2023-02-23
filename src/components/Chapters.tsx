@@ -4,30 +4,27 @@ import { useQuery } from 'react-query'
 //     maxVerses: 
 // }
 import { chapterData } from './Data/chapterData';
+type chapter = {
+    active: boolean
+    chapter:{
+        bookCode :string
+        count: number
+    }
+}
 
-// type chapter = {
-//     active: boolean
-//     chapter:{
-//         bookCode :string
-//         count: number
-//     }
-// }
-
-// type ChapterProps ={
-//     chapter :number
-//     setChapter : (chapter:number)=>void
-// }
+type ChapterProps ={
+    chapter :number
+    setChapter : (chapter:number)=>void
+}
 
 const chapterDataObj = Object.values(chapterData.maxVerses)
-
 console.log("kkkkkkkkkk",typeof(chapterDataObj));
 
 
-export default function Chapters(){
+export default function Chapters({chapter,setChapter}:ChapterProps){
     
-    function handleChange(){
-    //    setChapter(e.target.value)
-    console.log("ji")
+    function handleChange(e:React.ChangeEvent<HTMLSelectElement>){
+       setChapter(e.target.value)
     }
     return (
         <select className="p-2 m-2 hover:bg-gray-100 border border-black rounded " onChange={handleChange}>

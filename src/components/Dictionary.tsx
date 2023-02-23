@@ -1,65 +1,64 @@
-import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { useQuery } from "react-query";
+
 
 const Dictionary = ({ sNumber }: { sNumber: string }) => {
-  const [arrowClick, setArrowClick] = useState<boolean>(false);
-  const [arrowDown, setArrowDown] = useState<boolean>(false);
-
-  const onArrowtClick = () => {
-    if (arrowClick) {
-      setArrowClick(false);
-    } else {
-      setArrowClick(true);
-    }
-  };
+  const { isLoading, data } = useQuery("dictData", async () => {
+    const res = await fetch(
+      `/api/dictionary/${sNumber}`
+    );
+    const dictionary = await res.json();
+    return dictionary;
+  });
+  if (isLoading) return <div>Loading...</div>
 
   return (
     <>
       <div className="">
         <div className="p-1 flex flex-1">
-          {arrowClick ? (
-            <ChevronDownIcon onClick={onArrowtClick} className="w-6 h-6 mt-1" />
-          ) : (
-            <ChevronRightIcon
-              onClick={onArrowtClick}
-              className="w-6 h-6 mt-1"
-            />
-          )}
+          <ChevronRightIcon
+            className="w-6 h-6 mt-1"
+          />
           <div className=" mt-1">
-            <span className="ml-4 font-semibold">bible</span>
-            <span className="ml-4 font-semibold">biblo</span>
-            <span className="ml-4 font-semibold text-blue-700">g7849</span>
+            <span className="ml-4 font-semibold">{data?.transliteration}</span>
+            <span className="ml-4 font-semibold">{data?.lemma}</span>
+            <span className="ml-4 font-semibold text-blue-700">{data?.strongsNumber}</span>
           </div>
         </div>
-        <div className={`${arrowClick ? "block" : "hidden"} mt-2 border-t-2`}>
+        <div className={`mt-2 border-t-2`}>
           <div className="p-2">
             <div>
-              <span className="font-semibold font-serif">Lexeme: </span>
-              <span>ZBCD</span>
+              <span className="font-semibold font-serif">Lemma: </span>
+              <span>{data.lemma}</span>
             </div>
             <div className="mt-2">
               <span className="font-semibold font-serif">
                 Transliteration:{" "}
               </span>
-              <span>ZBCD</span>
+              <span>{data.transliteration}</span>
             </div>
             <div className="mt-2">
               <span className="font-semibold font-serif">Strongs Number: </span>
-              <span>ZBCD</span>
+              <span>{data.strongsNumber}</span>
             </div>
             <div className="mt-2">
               <span className="font-semibold font-serif">English Word: </span>
-              <span>ZBCD</span>
+              <span>{data?.englishWord}</span>
             </div>
+            {data?.derivation && (
+              <div className="mt-2">
+                <span className="font-semibold font-serif">Derivation: </span>
+                <span>{data?.derivation}</span>
+              </div>
+            )}
             <div className="mt-2">
               <span className="font-semibold font-serif">Pronunciation: </span>
-              <span>ZBCD</span>
+              <span>{data?.pronunciation}</span>
             </div>
             <div className="mt-2 mb-2">
               <span className="font-semibold font-serif">Definition: </span>
               <span>
-                Tailwind lets you conditionally apply utility classes in
-                different states using variant modifiers.
+                {data?.definition}
               </span>
             </div>
           </div>
