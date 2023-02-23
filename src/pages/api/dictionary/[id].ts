@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../../lib/prisma'
 
 // GET /api/dictionary/:id
-//Fetiching record with given strong number
+//Fetching record with given strong number
 export default async function handle(
     req: NextApiRequest,
     res: NextApiResponse,
