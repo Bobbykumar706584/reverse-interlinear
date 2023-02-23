@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import Bible from "@/components/Bible";
 import Dictionary from "../components/Dictionary";
+import SearchTokens from '@/components/SearchTokens';
 
 const queryClient = new QueryClient()
 
@@ -12,7 +13,8 @@ export default function Home() {
         Reverse Interlinear Bible
       </div>
       <QueryClientProvider client={queryClient}>
-        <div className="grid grid-cols-5 bg-gray-50 gap-2 m-1 ">
+        <SearchTokens />
+        <div className="grid grid-cols-5 bg-gray-50 gap-2 m-4 ">
           <div className="border col-span-3 border-black shadow-sm shadow-gray-800 rounded">
             <Bible />
           </div>
@@ -20,7 +22,7 @@ export default function Home() {
             <Dictionary sNumber={sNumber} />
           </div>
         </div>
-      </QueryClientProvider>
+      </QueryClientProvider>  
     </>
   );
 }
