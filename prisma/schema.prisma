@@ -16,17 +16,25 @@ model Greek_Dictionary {
   lemma           String?
   transliteration String?
   definition      String?
-  strongsNumber   String
+  strongsNumber   String?
   englishWord     String?
 }
 
 model Hebrew_Dictionary {
   id              Int     @id @default(autoincrement())
-  lemma           String
-  pronunciation   String
-  transliteration String
-  definition      String
+  lemma           String?
+  pronunciation   String?
+  transliteration String?
+  definition      String?
   derivation      String?
-  strongsNumber   String
+  strongsNumber   String?
   englishWord     String?
+}
+
+model Bible {
+  id              Int @id @default(autoincrement())
+  book            String
+  chapter         Int
+  usfm            String
+  json            String
 }

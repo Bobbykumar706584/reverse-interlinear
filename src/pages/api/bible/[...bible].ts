@@ -12,7 +12,7 @@ export default async function handle(
   const [bookCode, chapter, verse] = req.query.bible as string[];
   const bibleDirectory = path.join(process.cwd(), "bible");
   const usfmValue = await fs.readFile(
-    bibleDirectory + "/" + bookCode + "-kjv.usfm",
+    bibleDirectory + "/" + bookCode + ".usfm",
     "utf8"
   );
   const myUSFMParser = new grammar.USFMParser(usfmValue);

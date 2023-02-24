@@ -6,7 +6,7 @@ const Lemma = ({ strongs }: { strongs: string }) => {
     const dictionary = await res.json();
     return dictionary;
   });
-  return <span>{data?.lemma}</span>;
+  return <span className="font-semibold">{data?.lemma}</span>;
 };
 
 export default Lemma;
