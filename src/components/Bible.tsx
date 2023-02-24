@@ -36,7 +36,7 @@ const enableCheck = () => {
         <Books book={book} setBook={setBook} />
         <Chapters book={book} chapter={chapter} setChapter={setChapter} />
        <div className="flex">
-       <input onClick={enableCheck} checked={enable} type="checkbox" className="ml-4 w-5 h-5 mt-5"/>
+       <input onClick={enableCheck} checked={enable} type="checkbox" className="ml-4 w-5 h-5 mt-5 cursor-pointer"/>
         <span className="ml-2 mt-5">Show Reverse Interlinear</span>
        </div>
       </div>
