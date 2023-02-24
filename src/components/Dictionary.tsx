@@ -1,7 +1,7 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { XCircleIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "react-query";
 
-const Dictionary = ({ sNumber }: { sNumber: string }) => {
+const Dictionary = ({ sNumber,updateSNumber }: { sNumber: string,updateSNumber:(s:string)=>void }) => {
   const { isError, isLoading, data } = useQuery(
     ["dictData", sNumber],
     async () => {
@@ -16,15 +16,22 @@ const Dictionary = ({ sNumber }: { sNumber: string }) => {
   return (
     <>
       <div className="">
-        <div className="p-1 flex flex-1">
-          <ChevronRightIcon className="w-6 h-6 mt-1" />
-          <div className=" mt-1">
+        <div className="p-1 flex flex-1 ">
+          <div className="mt-1 grid grid-cols-12">
             <span className="ml-4 font-semibold">{data?.transliteration}</span>
             <span className="ml-4 font-semibold">{data?.lemma}</span>
             <span className="ml-4 font-semibold text-blue-700">
               {data?.strongsNumber?.toUpperCase()}
             </span>
+            <span className="col-end-13">
+          <XCircleIcon className="w-6 h-6 ml-10 bg-red-600 rounded-full text-white cursor-pointer" onClick={()=>updateSNumber('')} />
+
+            </span>
           </div>
+          <div>
+
+          </div>
+
         </div>
         <div className={`mt-2 border-t-2`}>
           <div className="p-2">

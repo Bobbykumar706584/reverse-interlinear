@@ -14,8 +14,9 @@ type TextProps = {
   book: string | undefined;
   chapter: string | undefined;
   setSNumber: (s: string) => void;
+  enable:boolean
 };
-const Text = ({ book, chapter, setSNumber }: TextProps) => {
+const Text = ({enable, book, chapter, setSNumber }: TextProps) => {
   const { isLoading, data } = useQuery(["repoData", book, chapter], () =>
     fetch(`/api/bible/${book}/${chapter}`).then((res) => res.json())
   );
@@ -40,7 +41,10 @@ const Text = ({ book, chapter, setSNumber }: TextProps) => {
               key={i}
             >
               <span>{val["+w"][0]}</span>{" "}
+              {enable && (
               <Lemma strongs={val.attributes[0].strong} />
+
+              )}
             </span>
           ) : val["+add"] ? (
             <span> {val["+add"][0]}</span>
@@ -53,14 +57,17 @@ const Text = ({ book, chapter, setSNumber }: TextProps) => {
         const strongs = cleanStrongs(item.attributes[0].strong);
         return (
           <span
-            className="inline-flex flex-col rounded bg-gray-200  p-1 m-1"
+            className="inline-flex flex-col rounded bg-gray-200  p-1 m-1 cursor-pointer"
             onClick={() => {
               setSNumber(strongs);
             }}
             key={i}
           >
             <span>{" " + item?.w[0]}</span>
+            {enable && (
             <Lemma strongs={strongs} />
+
+            )}
           </span>
         );
       }
@@ -80,7 +87,7 @@ const Text = ({ book, chapter, setSNumber }: TextProps) => {
     });
   }
   return (
-    <div className="m-4 text-justify">
+    <div className="m-4 text-justify overflow-auto max-h-[50rem]">
       {data?.contents?.map(
         (item: {
           verseNumber: number;
