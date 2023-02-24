@@ -8,10 +8,9 @@ const queryClient = new QueryClient();
 export default function Home() {
   const [sNumber, setSNumber] = useState("");
 
-  const updateSNumber = (SN: string):void => {
-    setSNumber(SN)
-  }
-
+  const updateSNumber = (SN: string): void => {
+    setSNumber(SN);
+  };
 
   return (
     <>
@@ -19,14 +18,19 @@ export default function Home() {
         Reverse Interlinear Bible
       </div>
       <QueryClientProvider client={queryClient}>
-        <div className={`grid ${sNumber ? 'grid-cols-5': 'grid-cols-2'} bg-gray-50 gap-2 m-1 fixed`}>
+        <div
+          className={`grid ${
+            sNumber ? "grid-cols-5" : "grid-cols-2"
+          } bg-gray-50 gap-2 m-1 fixed`}
+        >
           <div className="border col-span-3 border-black shadow-sm shadow-gray-800 rounded">
             <Bible setSNumber={setSNumber} />
           </div>
-          {sNumber &&
-          <div className="border col-span-2 border-black shadow-sm shadow-gray-800 rounded">
-            <Dictionary sNumber={sNumber} updateSNumber={updateSNumber} />
-          </div>}
+          {sNumber && (
+            <div className="border col-span-2 border-black shadow-sm shadow-gray-800 rounded">
+              <Dictionary sNumber={sNumber} updateSNumber={updateSNumber} />
+            </div>
+          )}
         </div>
       </QueryClientProvider>
     </>
